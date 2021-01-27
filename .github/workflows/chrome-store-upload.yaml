@@ -1,0 +1,28 @@
+name: Upload To Chrome Web Store
+
+on:
+  push:
+    tags:
+      - v**
+      
+jobs:
+  build:
+    name: Upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+
+      - name: zip
+        uses: montudor/action-zip@v0.1.0
+        with:
+          args: zip -r ./svs.zip . -i * -x *.git*
+
+      - name: Upload to
+        uses: trmcnvn/chrome-addon@v2
+        with:
+          extension: "biofolodkgjpmiokhifjifhkjdifdopp"
+          zip: svs.zip
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
