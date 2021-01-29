@@ -1,11 +1,14 @@
 {
   "name": "Simple Video Skipper",
   "description": "Click Ctrl+Left to skip forward 5s, Ctrl+Right to skip 5s. Add Shift to increase to 10s.",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
+  "permissions": [
+    "activeTab"
+  ],
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "commands": {
     "skip-forward-5": {
